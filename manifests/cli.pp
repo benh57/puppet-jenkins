@@ -34,7 +34,7 @@ class jenkins::cli {
     path    => ['/bin', '/usr/bin'],
     cwd     => '/tmp',
     creates => $jar,
-    require => Service['jenkins'],
+    require => Service[$::jenkins::service_name],
   }
 
   file { $jar:

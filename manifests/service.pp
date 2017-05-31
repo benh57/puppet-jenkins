@@ -6,7 +6,7 @@ class jenkins::service {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
-  service { 'jenkins':
+  service { $jenkins::service_name:
     ensure     => $jenkins::service_ensure,
     enable     => $jenkins::service_enable,
     provider   => $jenkins::service_provider,

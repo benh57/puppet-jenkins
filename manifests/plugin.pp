@@ -148,7 +148,7 @@ define jenkins::plugin(
       group   => $::jenkins::group,
       mode    => '0644',
       require => Archive[$plugin],
-      notify  => Service['jenkins'],
+      notify  => Service[$::jenkins::service_name],
     }
 
     $pinned_ensure = $pin ? {
@@ -161,7 +161,7 @@ define jenkins::plugin(
       owner   => $::jenkins::user,
       group   => $::jenkins::group,
       require => Archive[$plugin],
-      notify  => Service['jenkins'],
+      notify  => Service[$::jenkins::service_name],
     }
 
     if $digest_string {
@@ -184,7 +184,7 @@ define jenkins::plugin(
       cleanup         => false,
       extract         => false,
       require         => File[$::jenkins::plugin_dir],
-      notify          => Service['jenkins'],
+      notify          => Service[$::jenkins::service_name],
     }
   }
 
@@ -192,7 +192,7 @@ define jenkins::plugin(
     owner  => $::jenkins::user,
     group  => $::jenkins::group,
     mode   => '0644',
-    before => Service['jenkins'],
+    before => Service[$::jenkins::service_name],
   }
 
   if $manage_config {
@@ -206,7 +206,7 @@ define jenkins::plugin(
       owner   => $::jenkins::user,
       group   => $::jenkins::group,
       mode    => '0644',
-      notify  => Service['jenkins'],
+      notify  => Service[$::jenkins::service_name],
     }
   }
 }

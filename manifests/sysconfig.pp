@@ -13,7 +13,7 @@ define jenkins::sysconfig(
     path   => "${::jenkins::sysconfdir}/jenkins",
     line   => "${name}=\"${value}\"",
     match  => "^${name}=",
-    notify => Service['jenkins'],
+    notify => Service[$::jenkins::service_name],
   }
 
 }

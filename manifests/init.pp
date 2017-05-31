@@ -53,11 +53,14 @@
 #   Enable management of ``Service[jenkins]`` resource
 #
 #   When setting to ``false`` please ensure something else defines
-#   ``Service[jenkins]`` in order for some module functionality (e.g.
+#   ``Service[service_name]`` (default jenkins) in order for some module functionality (e.g.
 #   ``jenkins::cli``) to work properly
 #
 # @param service_enable
 #   Enable (or not) the jenkins service
+#
+# @param service_name
+#   Name of the jenkins service - used for dependencies when service managed outside this module
 #
 # @param service_ensure
 #   Status of the jenkins service
@@ -282,6 +285,7 @@ class jenkins(
   $manage_service       = true,
   $service_enable       = $jenkins::params::service_enable,
   $service_ensure       = $jenkins::params::service_ensure,
+  $service_name         = $jenkins::params::service_name,
   $service_provider     = $jenkins::params::service_provider,
   $config_hash          = {},
   $plugin_hash          = {},
